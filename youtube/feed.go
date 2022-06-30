@@ -149,7 +149,7 @@ func (p *Plugin) sendNewVidMessage(guild, discordChannel string, channelTitle st
 
 	parseMentions := []discordgo.AllowedMentionType{}
 	if mentionEveryone {
-		parseMentions = []discordgo.AllowedMentionType{discordgo.AllowedMentionTypeEveryone}
+		parseMentions = []discordgo.AllowedMentionType{discordgo.AllowedMentionTypeRoles}
 	}
 
 	go analytics.RecordActiveUnit(parsedGuild, p, "posted_youtube_message")
@@ -423,9 +423,18 @@ func (p *Plugin) postVideo(subs []*ChannelSubscription, publishedAt time.Time, v
 				continue
 			}
 
-			if sub.MentionEveryone {
-				content += " @everyone"
+			var mention = ""
+			if channelID == "UCzL0SBEypNk4slpzSbxo01g" {
+				mention = " <@&731411366799343707>"
+			} else if channelID == "UCmNSSt8MI2In5Y-gBFVexVQ" {
+				mention = " <@&934873771406413885>"
+			} else {
+				mention = " <@&720717475901341726>"
 			}
+			if sub.MentionEveryone {
+				content += mention
+			}
+
 			p.sendNewVidMessage(sub.GuildID, sub.ChannelID, video.Snippet.ChannelTitle, video.Id, sub.MentionEveryone, content)
 		}
 	}
