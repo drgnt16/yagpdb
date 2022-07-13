@@ -33,6 +33,7 @@ var Command = &commands.YAGCommand{
 			return nil, err
 		}
 		//Notify of success
-		return "Sent: " + msgOUT.Link(), nil
+		msgChannel, _ := common.BotSession.Channel(msgOUT.ChannelID)
+		return "Sent to " + msgChannel.Mention(), nil
 	},
 }
