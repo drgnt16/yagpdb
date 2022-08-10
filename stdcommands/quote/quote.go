@@ -31,12 +31,8 @@ var Command = &commands.YAGCommand{
 			msgIN, err := common.BotSession.ChannelMessage(channelID, messageID)
 			//Get attachments
 			msgAttach := ""
-			for i, a := range msgIN.Attachments {
-				if i != 0 {
-					msgAttach += " : " + a.URL
-				} else {
-					msgAttach += a.URL
-				}
+			for _, a := range msgIN.Attachments {
+				msgAttach += a.URL + " "
 			}
 			if err != nil {
 				return nil, err
@@ -46,7 +42,7 @@ var Command = &commands.YAGCommand{
 			print(len(msgIN.Embeds))
 			if len(msgIN.Embeds) > 0 {
 				_, err = common.BotSession.ChannelMessageSendComplex(data.ChannelID, &discordgo.MessageSend{
-					Content: msgIN.Content + "\n" + msgAttach,
+					Content: msgIN.Content,
 					Embeds:  msgIN.Embeds,
 					AllowedMentions: discordgo.AllowedMentions{
 						Parse: []discordgo.AllowedMentionType{discordgo.AllowedMentionTypeUsers},
@@ -55,6 +51,7 @@ var Command = &commands.YAGCommand{
 				if err != nil {
 					return nil, err
 				}
+				_, err = common.BotSession.ChannelMessageSend(data.ChannelID, msgAttach)
 				return nil, nil
 			}
 			//If no embed create one to house message
@@ -67,17 +64,14 @@ var Command = &commands.YAGCommand{
 				URL:         data.Args[0].Value.(string),
 				Title:       "Message in #" + msgChannel.Name,
 				Description: msgIN.Content,
-				Fields: []*discordgo.MessageEmbedField{{
-					Name:  "Attachments",
-					Value: msgAttach,
-				}},
-				Color:     1,
-				Timestamp: string(msgIN.Timestamp),
+				Color:       1,
+				Timestamp:   string(msgIN.Timestamp),
 			}
 			_, err = common.BotSession.ChannelMessageSendEmbed(data.ChannelID, embed)
 			if err != nil {
 				return nil, err
 			}
+			_, err = common.BotSession.ChannelMessageSend(data.ChannelID, msgAttach)
 			return nil, nil
 		}
 		//URL is invalid
