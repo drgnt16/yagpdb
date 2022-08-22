@@ -42,6 +42,7 @@ import (
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/statedbg"
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/stateinfo"
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/throw"
+	"github.com/botlabs-gg/yagpdb/v2/stdcommands/ticker"
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/toggledbg"
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/topcommands"
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/topevents"
@@ -129,6 +130,7 @@ func (p *Plugin) AddCommands() {
 		//Quack
 		redirect.Command,
 		quote.Command,
+		ticker.Command,
 	)
 
 	statedbg.Commands()
