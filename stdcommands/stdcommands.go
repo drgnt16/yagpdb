@@ -33,7 +33,6 @@ import (
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/owldictionary"
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/ping"
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/poll"
-	"github.com/botlabs-gg/yagpdb/v2/stdcommands/redirect"
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/roll"
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/setstatus"
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/simpleembed"
@@ -127,7 +126,6 @@ func (p *Plugin) AddCommands() {
 		listflags.Command,
 
 		//Quack
-		redirect.Command,
 		ticker.Command,
 	)
 
