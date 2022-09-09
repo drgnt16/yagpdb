@@ -31,7 +31,7 @@ var (
 
 // Setting it to 1 Month approx
 const (
-	MinIntervalTriggerDurationMinutes = 5
+	MinIntervalTriggerDurationMinutes = 1
 	MinIntervalTriggerDurationHours   = 1
 	MaxIntervalTriggerDurationHours   = 744
 	MaxIntervalTriggerDurationMinutes = 44640
