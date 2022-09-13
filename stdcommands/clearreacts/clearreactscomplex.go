@@ -24,7 +24,6 @@ var Command = &commands.YAGCommand{
 		whitelist := strings.Split(data.Args[2].Value.(string), ";")
 		//Loop reactions in message
 		for _, reaction := range message.Reactions {
-			println(reaction.Emoji.Name)
 			//Check if reaction is in list
 			if !contains(whitelist, reaction.Emoji.Name) {
 				//Remove reaction
