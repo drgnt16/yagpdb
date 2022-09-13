@@ -48,6 +48,7 @@ import (
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/topgames"
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/topic"
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/topservers"
+	"github.com/botlabs-gg/yagpdb/v2/stdcommands/typing"
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/unbanserver"
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/undelete"
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/viewperms"
@@ -129,6 +130,7 @@ func (p *Plugin) AddCommands() {
 		//Quack
 		ticker.Command,
 		timestamp.Command,
+		typing.Command,
 	)
 
 	statedbg.Commands()
