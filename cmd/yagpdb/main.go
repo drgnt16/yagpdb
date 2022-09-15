@@ -6,6 +6,7 @@ import (
 	"github.com/botlabs-gg/yagpdb/v2/common/featureflags"
 	"github.com/botlabs-gg/yagpdb/v2/common/prom"
 	"github.com/botlabs-gg/yagpdb/v2/common/run"
+	"github.com/botlabs-gg/yagpdb/v2/reactionwhitelist"
 	"github.com/botlabs-gg/yagpdb/v2/web/discorddata"
 
 	// Core yagpdb packages
@@ -91,6 +92,7 @@ func main() {
 	internalapi.RegisterPlugin()
 	prom.RegisterPlugin()
 	featureflags.RegisterPlugin()
+	reactionwhitelist.RegisterPlugin()
 
 	run.Run()
 }
