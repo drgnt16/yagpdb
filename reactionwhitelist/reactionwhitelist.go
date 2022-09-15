@@ -44,7 +44,7 @@ func handleReactionAdd(evt *eventsystem.EventData) {
 		//And not in whitelist or guild emotes
 		if !stringcontains(strings.Split(whitelist, ";"), emoji.Name) && !emojicontains(evt.GS.Emojis, emoji) {
 			//Remove reaction
-			common.BotSession.MessageReactionRemoveEmoji(cID, mID, emoji.APIName())
+			common.BotSession.MessageReactionRemove(cID, mID, emoji.APIName(), uID)
 			//add NoReaction group to user who reacted
 			common.BotSession.GuildMemberRoleAdd(gID, uID, 988901586669551687)
 			scheduledevents2.ScheduleRemoveRole(context.Background(), gID, uID, 988901586669551687, time.Now().Add(time.Hour*72))
