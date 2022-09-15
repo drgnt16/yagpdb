@@ -21,8 +21,8 @@ type Plugin struct{}
 
 func (p *Plugin) PluginInfo() *common.PluginInfo {
 	return &common.PluginInfo{
-		Name:     "AYLIEN",
-		SysName:  "aylien",
+		Name:     "Reaction Whitelist",
+		SysName:  "reactionwhitelist",
 		Category: common.PluginCategoryMisc,
 	}
 }
