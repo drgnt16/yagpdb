@@ -11,7 +11,6 @@ import (
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/calc"
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/catfact"
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/ccreqs"
-	"github.com/botlabs-gg/yagpdb/v2/stdcommands/clearreacts"
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/createinvite"
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/currentshard"
 	"github.com/botlabs-gg/yagpdb/v2/stdcommands/currenttime"
@@ -132,7 +131,6 @@ func (p *Plugin) AddCommands() {
 		ticker.Command,
 		timestamp.Command,
 		typing.Command,
-		clearreactscomplex.Command,
 	)
 
 	statedbg.Commands()
