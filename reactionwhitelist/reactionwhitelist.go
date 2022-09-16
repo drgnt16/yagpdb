@@ -5,6 +5,7 @@ import (
 	"github.com/botlabs-gg/yagpdb/v2/bot/eventsystem"
 	"github.com/botlabs-gg/yagpdb/v2/common/scheduledevents2"
 	"github.com/botlabs-gg/yagpdb/v2/lib/discordgo"
+	"strconv"
 	"strings"
 	"time"
 
@@ -55,6 +56,19 @@ func handleReactionAdd(evt *eventsystem.EventData) {
 			//add NoReaction group to user who reacted
 			common.BotSession.GuildMemberRoleAdd(gID, uID, 988901586669551687)
 			scheduledevents2.ScheduleRemoveRole(context.Background(), gID, uID, 988901586669551687, time.Now().Add(time.Hour*72))
+			//sends embed to log
+			embed := &discordgo.MessageEmbed{
+				Title:       "Blocked Reaction",
+				Description: "Message: " + strconv.FormatInt(mID, 10) + "\nChannel: " + strconv.FormatInt(cID, 10) + "\nEmoji: " + emoji.Name,
+				Author: &discordgo.MessageEmbedAuthor{
+					Name: strconv.FormatInt(cID, 10),
+				},
+				Footer: &discordgo.MessageEmbedFooter{
+					Text: time.Now().Format("02 Jan 06 15:04 MST"),
+				},
+				Color: 16753920,
+			}
+			common.BotSession.ChannelMessageSendEmbed(975717826428022804, embed)
 		}
 	}
 
