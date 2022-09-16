@@ -36,12 +36,8 @@ func (p *Plugin) BotInit() {
 	eventsystem.AddHandlerAsyncLastLegacy(p, handleReactionAdd, eventsystem.EventMessageReactionAdd)
 }
 
-var (
-	whitelist string
-)
-
 func handleReactionAdd(evt *eventsystem.EventData) {
-	whitelist = "👍;👎;👌;❤️;🖤;🧡;💙;💚;💜;💛;🤎;🤍;😃;😂;☺️;😍;🥰;♥️;💖;😁;😎;🎂;🥳;🫂;👏;💕;💞;🙂;😀;💀;💯;👀;😻;😊;🤔;😰;😥;🙁;😦;😭;🇫;🖕;🎉;👆;🆗;☝️;💗;🙏;🐰;🔼;⬇️"
+	whitelist := "👍;👎;👌;❤️;🖤;🧡;💙;💚;💜;💛;🤎;🤍;😃;😂;☺️;😍;🥰;♥️;💖;😁;😎;🎂;🥳;🫂;👏;💕;💞;🙂;😀;💀;💯;👀;😻;😊;🤔;😰;😥;🙁;😦;😭;🇫;🖕;🎉;👆;🆗;☝️;💗;🙏;🐰;🔼;⬇️"
 	emoji, cID, gID, uID, mID, _ := getReactionDetails(evt)
 	//Allow numbers in Bulletin-Board
 	if cID == 880127379119415306 {
@@ -52,6 +48,9 @@ func handleReactionAdd(evt *eventsystem.EventData) {
 		//And not in whitelist or guild emotes
 		if !stringcontains(strings.Split(whitelist, ";"), emoji.Name) && !emojicontains(evt.GS.Emojis, emoji) {
 			//Remove reaction
+			logger.Info("Whitelist: " + whitelist)
+			logger.Info("Emote: " + emoji.Name)
+			logger.Info("API: " + emoji.APIName())
 			common.BotSession.MessageReactionRemove(cID, mID, emoji.APIName(), uID)
 			//add NoReaction group to user who reacted
 			common.BotSession.GuildMemberRoleAdd(gID, uID, 988901586669551687)
