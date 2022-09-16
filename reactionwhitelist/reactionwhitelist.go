@@ -59,9 +59,9 @@ func handleReactionAdd(evt *eventsystem.EventData) {
 			//sends embed to log
 			embed := &discordgo.MessageEmbed{
 				Title:       "Blocked Reaction",
-				Description: "Message: " + strconv.FormatInt(mID, 10) + "\nChannel: " + strconv.FormatInt(cID, 10) + "\nEmoji: " + emoji.Name,
+				Description: "MessageID: " + strconv.FormatInt(mID, 10) + "\nChannelID: " + strconv.FormatInt(cID, 10) + "\nEmoji: " + emoji.Name,
 				Author: &discordgo.MessageEmbedAuthor{
-					Name: strconv.FormatInt(cID, 10),
+					Name: "UserID: " + strconv.FormatInt(cID, 10),
 				},
 				Footer: &discordgo.MessageEmbedFooter{
 					Text: time.Now().Format("02 Jan 06 15:04 MST"),
