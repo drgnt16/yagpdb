@@ -39,6 +39,10 @@ func (p *Plugin) BotInit() {
 func handleReactionAdd(evt *eventsystem.EventData) {
 	whitelist := "👍;👎;👌;❤️;🖤;🧡;💙;💚;💜;💛;🤎;🤍;😃;😂;☺️;😍;🥰;♥️;💖;😁;😎;🎂;🥳;🫂;👏;💕;💞;🙂;😀;💀;💯;👀;😻;😊;🤔;😰;😥;🙁;😦;😭;🇫;🖕;🎉;👆;🆗;☝️;💗;🙏;🐰;🔼;⬇️"
 	emoji, cID, gID, uID, mID, _ := getReactionDetails(evt)
+	//Allow numbers in Bulletin-Board
+	if cID == 880127379119415306 {
+		whitelist = whitelist + "️;1️⃣;2️⃣;3️⃣;4️⃣;5️⃣;6️⃣;7️⃣;8️⃣;9️⃣;0️⃣"
+	}
 	//If in ping channel
 	if uID != common.BotUser.ID && (cID == 731407385624838197 || cID == 567144073857859609 || cID == 880127379119415306 || cID == 950342241266839592) {
 		//And not in whitelist or guild emotes
