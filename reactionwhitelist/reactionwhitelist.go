@@ -41,7 +41,7 @@ func handleReactionAdd(evt *eventsystem.EventData) {
 	emoji, cID, gID, uID, mID, _ := getReactionDetails(evt)
 	//Allow numbers in Bulletin-Board
 	if cID == 880127379119415306 {
-		whitelist = whitelist + "️;1️⃣;2️⃣;3️⃣;4️⃣;5️⃣;6️⃣;7️⃣;8️⃣;9️⃣;0️⃣"
+		whitelist = whitelist + ";1⃣;2⃣;3⃣;4⃣;5⃣;6⃣;7⃣;8⃣;9⃣;0⃣⃣"
 	}
 	//If in ping channel
 	if uID != common.BotUser.ID && (cID == 731407385624838197 || cID == 567144073857859609 || cID == 880127379119415306) {
