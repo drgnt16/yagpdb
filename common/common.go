@@ -238,6 +238,9 @@ func connectRedis(unitTests bool) (err error) {
 		radix.PoolOnEmptyWait(),
 		radix.PoolOnFullClose(),
 		radix.PoolPipelineWindow(0, 0),
+		radix.PoolConnFunc(func(network, addr string) (radix.Conn, error) {
+			return radix.Dial(network, addr, radix.DialAuthPass(os.Getenv("YAGPDB_REDIS_AUTH")))
+		}),
 	}
 
 	// if were running unit tests, use the 2nd db to avoid accidentally running tests against a main db
